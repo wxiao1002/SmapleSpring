@@ -3,6 +3,7 @@ package com.github.spring.beans.factory;
 import com.github.spring.beans.BeanException;
 import com.github.spring.beans.BeanDefinition;
 import com.github.spring.beans.BeanFactory;
+import com.github.spring.beans.support.DisposableBeanAdapter;
 
 /**
  * 抽象模版方法  先从单例中寻找  找不到调用 create bean
@@ -53,6 +54,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanFactory im
      * @throws BeanException BeanException
      */
     protected abstract Object createBean(String beanName, BeanDefinition<?> beanDefinition,Object ... args) throws BeanException;
+
 
 
 

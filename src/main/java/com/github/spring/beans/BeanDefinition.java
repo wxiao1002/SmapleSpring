@@ -13,6 +13,10 @@ public class BeanDefinition<T> {
 
    private final PropertyValues propertyValues;
 
+   private String initMethod;
+
+   private String destroyMethod;
+
    public BeanDefinition(Class<T> beanClass) {
       this.beanClass = beanClass;
       this.propertyValues = new PropertyValues();
@@ -29,5 +33,21 @@ public class BeanDefinition<T> {
 
    public PropertyValues getPropertyValues() {
       return propertyValues;
+   }
+
+   public String getInitMethod() {
+      return initMethod;
+   }
+
+   public void setInitMethod(String initMethod) {
+      this.initMethod = initMethod;
+   }
+
+   public String getDestroyMethod() {
+      return destroyMethod;
+   }
+
+   public void setDestroyMethod(String destroyMethod) {
+      this.destroyMethod = destroyMethod;
    }
 }
