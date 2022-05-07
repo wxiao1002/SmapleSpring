@@ -16,8 +16,19 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanFactory im
         if (bean != null){
             return bean;
         }
-        BeanDefinition beanDefinition = getBeanDefinition(beanName);
+        BeanDefinition<?> beanDefinition = getBeanDefinition(beanName);
         return createBean(beanName,beanDefinition);
+    }
+
+
+    @Override
+    public Object getBean(String beanName, Object... args) throws BeanException {
+        Object bean  = getSingleton(beanName);
+        if (bean != null){
+            return bean;
+        }
+        BeanDefinition<?> beanDefinition = getBeanDefinition(beanName);
+        return createBean(beanName,beanDefinition,args);
     }
 
     /**
@@ -26,7 +37,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanFactory im
      * @return BeanDefinition
      * @throws BeanException BeanException
      */
-    protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeanException;
+    protected abstract BeanDefinition<?> getBeanDefinition(String beanName) throws BeanException;
 
     /**
      * 创建 bean
@@ -35,6 +46,17 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanFactory im
      * @return Object bean
      * @throws BeanException BeanException
      */
-    protected abstract Object createBean(String beanName, BeanDefinition beanDefinition) throws BeanException;
+    protected abstract Object createBean(String beanName, BeanDefinition<?> beanDefinition) throws BeanException;
+
+
+    /**
+     * 创建 bean
+     * @param beanName bean name
+     * @param beanDefinition beanDefinition
+     * @param args args
+     * @return Object bean
+     * @throws BeanException BeanException
+     */
+    protected abstract Object createBean(String beanName, BeanDefinition<?> beanDefinition,Object ... args) throws BeanException;
 
 }

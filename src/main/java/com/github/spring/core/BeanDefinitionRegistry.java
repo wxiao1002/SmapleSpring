@@ -11,5 +11,5 @@ public interface BeanDefinitionRegistry {
      * @param beanName bean name
      * @param beanDefinition beanDefinition
      */
-    void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
+    void registerBeanDefinition(String beanName, BeanDefinition<?> beanDefinition);
 }

@@ -11,7 +11,7 @@ public class TestSpringBeanFactory {
         BeanDefinition<MyService> beanDefinition = new BeanDefinition<>(MyService.class);
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         beanFactory.registerBeanDefinition("myService",beanDefinition);
-        Object myService = beanFactory.getBean("myService");
+        Object myService = beanFactory.getBean("myService","王潇p");
         System.out.println(myService);
     }
 }

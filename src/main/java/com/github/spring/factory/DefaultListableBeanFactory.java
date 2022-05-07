@@ -14,14 +14,16 @@ import java.util.Map;
  */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
 
-    private final Map<String,BeanDefinition> beanDefinitionFactory = new HashMap<>();
+    private final Map<String,BeanDefinition<?>> beanDefinitionFactory = new HashMap<>();
     @Override
-    protected BeanDefinition getBeanDefinition(String beanName) throws BeanException {
+    protected BeanDefinition<?> getBeanDefinition(String beanName) throws BeanException {
         return beanDefinitionFactory.get(beanName);
     }
 
     @Override
-    public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
+    public void registerBeanDefinition(String beanName, BeanDefinition<?> beanDefinition) {
         beanDefinitionFactory.put(beanName,beanDefinition);
     }
+
+
 }
