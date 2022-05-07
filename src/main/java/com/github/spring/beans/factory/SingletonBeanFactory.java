@@ -1,4 +1,4 @@
-package com.github.spring.factory;
+package com.github.spring.beans.factory;
 
 /**
  * 单例bean 工厂

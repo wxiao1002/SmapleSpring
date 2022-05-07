@@ -1,8 +1,8 @@
-package com.github.spring.factory;
+package com.github.spring.beans.factory;
 
-import com.github.spring.BeanException;
-import com.github.spring.core.BeanDefinition;
-import com.github.spring.core.BeanDefinitionRegistry;
+import com.github.spring.beans.BeanException;
+import com.github.spring.beans.BeanDefinition;
+import com.github.spring.beans.BeanDefinitionRegistry;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.github.spring;
+package com.github.spring.beans;
 
 /**
  * 属性值

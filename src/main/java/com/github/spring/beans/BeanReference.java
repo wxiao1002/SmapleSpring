@@ -1,4 +1,4 @@
-package com.github.spring.core;
+package com.github.spring.beans;
 
 /**
  * bean 的引用

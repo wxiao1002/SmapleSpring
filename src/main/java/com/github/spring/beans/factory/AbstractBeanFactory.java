@@ -1,8 +1,8 @@
-package com.github.spring.factory;
+package com.github.spring.beans.factory;
 
-import com.github.spring.BeanException;
-import com.github.spring.core.BeanDefinition;
-import com.github.spring.core.BeanFactory;
+import com.github.spring.beans.BeanException;
+import com.github.spring.beans.BeanDefinition;
+import com.github.spring.beans.BeanFactory;
 
 /**
  * 抽象模版方法  先从单例中寻找  找不到调用 create bean
@@ -12,23 +12,18 @@ import com.github.spring.core.BeanFactory;
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanFactory implements BeanFactory {
     @Override
     public Object getBean(String beanName) throws BeanException {
-        Object bean  = getSingleton(beanName);
-        if (bean != null){
-            return bean;
-        }
-        BeanDefinition<?> beanDefinition = getBeanDefinition(beanName);
-        return createBean(beanName,beanDefinition);
+        return doGetBean(beanName, null);
     }
 
 
     @Override
     public Object getBean(String beanName, Object... args) throws BeanException {
-        Object bean  = getSingleton(beanName);
-        if (bean != null){
-            return bean;
-        }
-        BeanDefinition<?> beanDefinition = getBeanDefinition(beanName);
-        return createBean(beanName,beanDefinition,args);
+        return doGetBean(beanName, args);
+    }
+
+    @Override
+    public <T> T getBean(String beanName, Class<T> requiredType) {
+        return (T) getBean(beanName);
     }
 
     /**
@@ -59,4 +54,15 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanFactory im
      */
     protected abstract Object createBean(String beanName, BeanDefinition<?> beanDefinition,Object ... args) throws BeanException;
 
+
+
+    protected <T> T doGetBean(final String name, final Object[] args) {
+        Object bean = getSingleton(name);
+        if (bean != null) {
+            return (T) bean;
+        }
+
+        BeanDefinition beanDefinition = getBeanDefinition(name);
+        return (T) createBean(name, beanDefinition, args);
+    }
 }

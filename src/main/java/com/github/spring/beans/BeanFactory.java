@@ -1,6 +1,4 @@
-package com.github.spring.core;
-
-import com.github.spring.BeanException;
+package com.github.spring.beans;
 
 /**
  * bean 工厂
@@ -25,4 +23,13 @@ public interface BeanFactory {
      * @throws BeanException BeanException
      */
   Object getBean(String beanName,Object ... args) throws BeanException;
+
+    /**
+     * 获取bean
+     * @param beanName bean name
+     * @param requiredType bean class
+     * @return Bean
+     * @param <T> bean type
+     */
+  <T> T getBean(String beanName,Class<T> requiredType);
 }

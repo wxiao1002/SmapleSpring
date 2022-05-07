@@ -1,4 +1,4 @@
-package com.github.spring.factory;
+package com.github.spring.beans.factory;
 
 import java.util.HashMap;
 import java.util.Map;

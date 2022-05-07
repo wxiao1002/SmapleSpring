@@ -1,5 +1,5 @@
-import com.github.spring.core.BeanDefinition;
-import com.github.spring.factory.DefaultListableBeanFactory;
+import com.github.spring.beans.BeanDefinition;
+import com.github.spring.beans.factory.DefaultListableBeanFactory;
 
 /**
  * @author wang xiao

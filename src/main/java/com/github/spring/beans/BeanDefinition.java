@@ -1,6 +1,6 @@
-package com.github.spring.core;
+package com.github.spring.beans;
 
-import com.github.spring.PropertyValues;
+import com.github.spring.beans.PropertyValues;
 
 /**
  * 定义 bean 的是实例化信息

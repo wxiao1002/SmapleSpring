@@ -1,12 +1,12 @@
-package com.github.spring.factory;
+package com.github.spring.beans.factory;
 
-import com.github.spring.BeanException;
-import com.github.spring.PropertyValue;
-import com.github.spring.PropertyValues;
-import com.github.spring.core.BeanDefinition;
-import com.github.spring.core.BeanReference;
-import com.github.spring.support.InstantiationStrategy;
-import com.github.spring.support.SimpleInstantiationStrategy;
+import com.github.spring.beans.BeanException;
+import com.github.spring.beans.PropertyValue;
+import com.github.spring.beans.PropertyValues;
+import com.github.spring.beans.BeanDefinition;
+import com.github.spring.beans.BeanReference;
+import com.github.spring.beans.support.InstantiationStrategy;
+import com.github.spring.beans.support.SimpleInstantiationStrategy;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

@@ -1,8 +1,8 @@
-import com.github.spring.PropertyValue;
-import com.github.spring.PropertyValues;
-import com.github.spring.core.BeanDefinition;
-import com.github.spring.core.BeanReference;
-import com.github.spring.factory.DefaultListableBeanFactory;
+import com.github.spring.beans.PropertyValue;
+import com.github.spring.beans.PropertyValues;
+import com.github.spring.beans.BeanDefinition;
+import com.github.spring.beans.BeanReference;
+import com.github.spring.beans.factory.DefaultListableBeanFactory;
 
 /**
  * @author wang xiao

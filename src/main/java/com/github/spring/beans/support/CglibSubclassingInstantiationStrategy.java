@@ -1,7 +1,7 @@
-package com.github.spring.support;
+package com.github.spring.beans.support;
 
-import com.github.spring.BeanException;
-import com.github.spring.core.BeanDefinition;
+import com.github.spring.beans.BeanException;
+import com.github.spring.beans.BeanDefinition;
 import net.sf.cglib.proxy.Callback;
 import net.sf.cglib.proxy.Enhancer;
 
