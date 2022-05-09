@@ -7,7 +7,7 @@ import com.github.spring.beans.BeanException;
  * @author wang xiao
  * @date 2022/5/7
  */
-public interface ConfigurableApplicationContext extends ApplicationContext {
+public interface ConfigurableApplicationContext extends ApplicationContext  {
 
     /**
      * 刷新容器

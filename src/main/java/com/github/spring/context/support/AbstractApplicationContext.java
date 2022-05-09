@@ -5,8 +5,13 @@ import com.github.spring.beans.factory.BeanPostProcessor;
 import com.github.spring.beans.factory.ConfigurableListableBeanFactory;
 import com.github.spring.beans.factory.support.BeanFactoryPostProcessor;
 import com.github.spring.context.ConfigurableApplicationContext;
+import com.github.spring.context.event.ApplicationEvent;
+import com.github.spring.context.event.ApplicationEventMulticaster;
+import com.github.spring.context.event.ApplicationListener;
+import com.github.spring.context.event.ContextRefreshedEvent;
 import com.github.spring.core.io.DefaultResourceLoader;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -14,8 +19,13 @@ import java.util.Map;
  * @date 2022/5/7
  */
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
+
+    private ApplicationEventMulticaster applicationEventMulticaster;
+
     @Override
     public void refresh() throws BeanException {
+
+        // 1. 刷新bean 工厂
         refreshBeanFactory();
 
         // 2. 获取 BeanFactory
@@ -29,8 +39,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
         // 4. BeanPostProcessor 需要提前于其他 Bean 对象实例化之前执行注册操作
         registerBeanPostProcessors(beanFactory);
 
+        // 6. 注册事件监听器
+        registerListeners();
+
         // 5. 提前实例化单例Bean对象
         beanFactory.preInstantiateSingletons();
+
+        // 7. 发布容器刷新完成事件
+        finishRefresh();
     }
 
     /**
@@ -82,5 +98,21 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
     @Override
     public <T> T getBean(String name, Class<T> requiredType) throws BeanException {
         return getBeanFactory().getBean(name, requiredType);
+    }
+
+    @Override
+    public void publishEvent(ApplicationEvent applicationEvent) {
+        applicationEventMulticaster.multicastEvent(applicationEvent);
+    }
+
+    private void registerListeners() {
+        Collection<ApplicationListener> applicationListeners = getBeansOfType(ApplicationListener.class).values();
+        for (ApplicationListener<?> listener : applicationListeners) {
+            applicationEventMulticaster.addApplicationListener(listener);
+        }
+    }
+
+    private void finishRefresh() {
+        publishEvent(new ContextRefreshedEvent(this));
     }
 }
